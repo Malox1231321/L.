@@ -774,6 +774,28 @@ details p {
   font-size: 14px;
   opacity: 0.9;
 }
+.player-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progress-container {
+  width: 100%;
+}
+
+.progress {
+  width: 100%;
+  accent-color: white;
+}
+
+.time {
+  font-size: 12px;
+  opacity: 0.7;
+  display: flex;
+  justify-content: space-between;
+}
 </style>
 </head>
 <body>
@@ -808,10 +830,21 @@ L.
   <div class="date-text">18/04/2025</div>
   <img src="18-04-2025.png" class="memory-img">
 </div>
-  <div class="name">Leray</div>
-  <div class="custom-player">
+<div class="custom-player">
   <button class="play-btn" onclick="toggleAudio(this)">▶</button>
-  <span class="track-name">Leray</span>
+
+  <div class="player-info">
+    <span class="track-name">Leray</span>
+
+    <div class="progress-container">
+      <input type="range" class="progress" value="0" min="0" max="100">
+    </div>
+
+    <div class="time">
+      <span class="current">0:00</span> / <span class="duration">0:00</span>
+    </div>
+  </div>
+
   <audio src="leraye.mp3"></audio>
 </div>
   <div class="quote-box">"I wasn't necessarily looking for happiness, just less pain"</div>
@@ -1814,6 +1847,11 @@ function toggleAudio(btn) {
     audio.pause();
     btn.textContent = "▶";
   }
+
+  audio.addEventListener("ended", () => {
+    btn.textContent = "▶";
+    audio.currentTime = 0;
+  });
 }
 </script>
 
