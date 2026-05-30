@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>💖</title>
+
+<style>
+.header-memories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 850px;
+  margin: 20px auto;
+  padding: 0 20px;
+  z-index: 10;
+}
+
+.memory-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+
+.date-text {
+  font-family: 'MioFontPersonalizzato', sans-serif;
+  font-size: 18px;
+  color: #A78BFA;
+  margin-bottom: 10px;
+}
+
+.memory-img{
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 28px;
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  box-shadow: 0 25px 60px rgba(0,0,0,.35);
+  display: block;
+  margin: 0 auto;
+}
+.memory-side:first-child .memory-img {
+  aspect-ratio: 1152 / 2048;
+}
+
+.memory-side:last-child .memory-img {
+  aspect-ratio: 900 / 600;
+}
+
+.box {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 5;
+}
+
+@font-face {
+    font-family: 'MioFontPersonalizzato';
+    src: url('fonts/HelpMe.ttf') format('truetype');
+}
+
+.quote-box {
+    font-family: 'MioFontPersonalizzato', sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    color: #A78BFA;
+    margin: 20px 0;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid rgba(167, 139, 250, 0.3);
+    border-bottom: 1px solid rgba(167, 139, 250, 0.3);
+}@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  color:#f3f4f6;
+  min-height:100vh;
+  overflow-x:hidden;
+  display:flex;
+  justify-content:center;
+  padding:90px 24px;
+  position:relative;
+  background:
+    radial-gradient(circle at top,#314879 0%,#182235 35%,#0a0f18 100%);
+}
+
+/* AURORA BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(168,85,247,.16),transparent 25%),
+    radial-gradient(circle at 80% 10%,rgba(59,130,246,.13),transparent 30%),
+    radial-gradient(circle at 50% 80%,rgba(236,72,153,.10),transparent 35%);
+  filter:blur(35px);
+  animation:aurora 14s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+@keyframes aurora{
+  0%{transform:scale(1) rotate(0deg);}
+  100%{transform:scale(1.25) rotate(8deg);}
+}
+
+/* STAR PARTICLES LAYER */
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* MAIN CONTAINER */
+.box{
+  width:100%;
+  max-width:850px;
+  position:relative;
+  z-index:5;
+  animation:pageEnter 1.4s cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes pageEnter{
+  from{
+    opacity:0;
+    transform:translateY(40px) scale(.98);
+    filter:blur(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+  }
+}
+
+/* TITLE */
+h1{
+  text-align:center;
+  font-size:88px;
+  margin-bottom:18px;
+  font-weight:700;
+  letter-spacing:4px;
+  animation:heartbeat 5s ease-in-out infinite;
+  text-shadow:
+    0 0 15px rgba(255,255,255,.25),
+    0 0 40px rgba(168,85,247,.45),
+    0 0 80px rgba(236,72,153,.25);
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  5%{transform:scale(1.04);}
+  10%{transform:scale(1);}
+  15%{transform:scale(1.05);}
+  20%{transform:scale(1);}
+}
+
+/* INTRO TEXT */
+.box > p{
+  text-align:center;
+  font-size:15px;
+  line-height:1.9;
+  opacity:.78;
+  margin-bottom:75px;
+  animation:fadeText 2s ease;
+}
+
+@keyframes fadeText{
+  from{opacity:0;letter-spacing:6px;}
+  to{opacity:.78;letter-spacing:0;}
+}
+
+/* TRACK CARD */
+.track{
+  position:relative;
+  overflow:hidden;
+  margin-bottom:42px;
+  border-radius:34px;
+  padding:38px;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  box-shadow:0 25px 80px rgba(0,0,0,.45);
+  transition:transform .6s ease, box-shadow .6s ease;
+  transform-style:preserve-3d;
+}
+
+/* glowing border */
+.track::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:34px;
+  padding:1px;
+  background:linear-gradient(120deg,#8b5cf6,#3b82f6,#ec4899);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  opacity:0;
+  transition:opacity .5s ease;
+}
+
+.track:hover{
+  transform:translateY(-10px) scale(1.01);
+}
+
+.track:hover::before{
+  opacity:1;
+}
+
+/* COVER */
+.cover{
+  width:260px;
+  height:260px;
+  object-fit:cover;
+  display:block;
+  margin:0 auto 22px;
+  border-radius:28px;
+  box-shadow:0 25px 60px rgba(0,0,0,.55);
+  transition: transform .8s cubic-bezier(.2,.8,.2,1), border-radius .8s ease;
+  transform-origin:center;
+  position:relative;
+  z-index:2;
+}
+
+/* VINILE (stato PLAY) */
+.track.playing .cover{
+  border-radius:50%;
+  transform:
+    translateX(90px)   /* ← ESCE LATERALMENTE */
+    translateY(-10px)
+    scale(1.08)
+    rotate(180deg);
+
+  animation: spin 2.6s linear infinite;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.55),
+    0 0 40px rgba(168,85,247,.35),
+    0 0 90px rgba(236,72,153,.20);
+}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+.cover:hover{
+  transform:scale(1.06) rotate(-1deg);
+}
+
+/* NAME */
+.name{
+  text-align:center;
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:22px;
+}
+
+/* AUDIO */
+audio{
+  width:100%;
+  margin-bottom:14px;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.3));
+}
+
+/* LYRICS */
+details{
+  margin-top:20px;
+  border-radius:22px;
+  overflow:hidden;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.05);
+}
+
+summary{
+  cursor:pointer;
+  padding:18px 22px;
+  font-size:11px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  opacity:.72;
+}
+
+summary::-webkit-details-marker{display:none;}
+
+details p {
+    font-family: 'Inter', sans-serif;
+    padding: 0 22px 24px;
+    font-size: 14px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    opacity: .9;
+    animation: lyricsIn .6s ease;
+}
+
+@keyframes lyricsIn{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:.9;transform:translateY(0);}
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:#0a0f18;}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(#8b5cf6,#ec4899);
+  border-radius:20px;
+}
+
+/* MOBILE */
+@media(max-width:760px){
+  h1{font-size:60px;}
+  .track{padding:24px;}
+  .cover{width:100%;height:auto;max-width:320px;}
+}
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+.track.playing{
+  border-color: rgba(168,85,247,.4);
+  box-shadow:
+    0 35px 120px rgba(168,85,247,.28),
+    0 0 60px rgba(59,130,246,.12);
+}
+
+.cover{
+  animation: float 6s ease-in-out infinite;
+}
+
+/* VINILE ATTIVO */
+/* 🎧 DISCO ANIMATO CHE “ESCE” */
+.track .cover{
+  transition: transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .6s ease, filter .6s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* stato PLAY */
+.track.playing .cover{
+  border-radius: 50%;
+  transform: translateY(-18px) scale(1.12);
+  animation: spin 2.8s linear infinite;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.35),
+    0 0 35px rgba(168,85,247,.45),
+    0 0 90px rgba(236,72,153,.25);
+
+  filter: saturate(1.3) contrast(1.1);
+}
+
+/* piccolo “slot” sotto come se fosse il vinile */
+.track.playing::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:60%;
+  transform:translateX(-50%);
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background: radial-gradient(circle,
+    rgba(0,0,0,.55),
+    rgba(0,0,0,0) 70%);
+  filter: blur(10px);
+  opacity:1;
+  pointer-events:none;
+}
+
+/* idle */
+.track::after{
+  opacity:0;
+  transition: opacity .4s ease;
+}
+/* PAUSA = FERMO (ma resta VINILE) */
+.track.paused .cover{
+  animation-play-state: paused;
+}
+
+@keyframes fadeScene{
+  from{
+    opacity:0;
+    filter: blur(10px) brightness(0.6);
+    transform: scale(1.02);
+  }
+  to{
+    opacity:1;
+    filter: blur(0px) brightness(1);
+    transform: scale(1);
+  }
+}
+.track{
+  opacity: 0;
+  transform: translateY(25px);
+  animation: cardEnter 0.8s ease forwards;
+}
+
+.track:nth-of-type(1){ animation-delay: 0.15s; }
+.track:nth-of-type(2){ animation-delay: 0.25s; }
+.track:nth-of-type(3){ animation-delay: 0.35s; }
+.track:nth-of-type(4){ animation-delay: 0.45s; }
+.track:nth-of-type(5){ animation-delay: 0.55s; }
+.track:nth-of-type(6){ animation-delay: 0.65s; }
+.track:nth-of-type(7){ animation-delay: 0.75s; }
+.track.playing .cover{
+  border-radius: 50%;
+  animation: spin 3s linear infinite;
+}
+
+.track:not(.playing) .cover{
+  animation: float 6s ease-in-out infinite;
+}
+
+.track.playing .visualizer{
+  opacity: 1;
+}
+
+.track:not(.playing) .visualizer{
+  opacity: 0;
+}
+
+@keyframes cardEnter{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.track.playing{
+  background: linear-gradient(
+    145deg,
+    rgba(168,85,247,.18),
+    rgba(59,130,246,.10),
+    rgba(236,72,153,.08)
+  );
+  border-color: rgba(168,85,247,.4);
+  box-shadow:
+    0 35px 120px rgba(168,85,247,.28),
+    0 0 60px rgba(59,130,246,.12);
+}
+.visualizer{
+  display:flex;
+  justify-content:center;
+  gap:4px;
+  margin-top:14px;
+  height:18px;
+  opacity:0;
+  transition: opacity .3s ease;
+}
+
+.track.playing .visualizer{
+  opacity:1;
+}
+
+.visualizer span{
+  width:3px;
+  height:6px;
+  background: linear-gradient(#8b5cf6,#ec4899);
+  border-radius:10px;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.visualizer span:nth-child(2){ animation-delay: .1s; }
+.visualizer span:nth-child(3){ animation-delay: .2s; }
+.visualizer span:nth-child(4){ animation-delay: .3s; }
+.visualizer span:nth-child(5){ animation-delay: .4s; }
+
+@keyframes bounce{
+  0%,100%{ transform:scaleY(.4); }
+  50%{ transform:scaleY(1.6); }
+}
+/* VINILE CHE ESCE */
+.track .cover{
+  position: relative;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* disco “estratto” */
+.track.playing .cover{
+  transform: translateY(-18px) scale(1.05) rotate(180deg);
+  box-shadow: 0 40px 90px rgba(0,0,0,.5);
+}
+
+/* piccolo “vinile glow” */
+.track.playing::after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  left:50%;
+  top:70px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(0,0,0,.6), rgba(0,0,0,0));
+  z-index:0;
+  opacity:0.6;
+}
+/* =========================
+   🎧 VINILE CINEMATICO
+========================= */
+
+.track .cover{
+  transition: transform .7s cubic-bezier(.2,.8,.2,1), 
+              box-shadow .7s ease,
+              border-radius .7s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* stato PLAY */
+.track.playing .cover{
+  border-radius: 50%;
+  transform: translateY(-25px) scale(1.12) rotate(360deg);
+  animation: spin 2.6s linear infinite;
+
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.45),
+    0 0 40px rgba(168,85,247,.5),
+    0 0 90px rgba(236,72,153,.25);
+
+  filter: saturate(1.3) contrast(1.15);
+}
+
+/* “vinile che esce dal case” */
+.track.playing::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:55%;
+  transform:translateX(-50%);
+  width:260px;
+  height:260px;
+  border-radius:50%;
+
+  background: radial-gradient(circle,
+    rgba(0,0,0,.6),
+    rgba(0,0,0,0) 70%);
+
+  filter: blur(12px);
+  opacity:0.8;
+  z-index:1;
+  pointer-events:none;
+}
+/* ✨ RIFLESSO LUCE SUL VINILE */
+
+.track.playing .cover{
+  position: relative;
+  overflow: hidden;
+}
+
+/* striscia luce */
+.track.playing .cover::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-60%;
+  width:60%;
+  height:180%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.15) 45%,
+    rgba(255,255,255,.35) 50%,
+    rgba(255,255,255,.15) 55%,
+    transparent 100%
+  );
+
+  transform: rotate(25deg);
+  animation: lightSweep 2.8s infinite;
+  pointer-events:none;
+}
+
+/* movimento luce */
+@keyframes lightSweep{
+  0%{
+    transform: translateX(-120%) rotate(25deg);
+    opacity: 0;
+  }
+  15%{
+    opacity: 1;
+  }
+  50%{
+    opacity: .9;
+  }
+  100%{
+    transform: translateX(320%) rotate(25deg);
+    opacity: 0;
+  }
+}
+/* 🌌 GLOW DINAMICO ROTANTE */
+
+.track.playing .cover{
+  position: relative;
+}
+
+/* aura che ruota attorno */
+.track.playing .cover::before{
+  content:"";
+  position:absolute;
+  inset:-20px;
+  border-radius:50%;
+
+  background: conic-gradient(
+    from 0deg,
+    rgba(168,85,247,.0),
+    rgba(168,85,247,.35),
+    rgba(236,72,153,.25),
+    rgba(59,130,246,.25),
+    rgba(168,85,247,.0)
+  );
+
+  animation: auraSpin 3s linear infinite;
+  filter: blur(10px);
+  z-index:-1;
+}
+
+/* rotazione luce */
+@keyframes auraSpin{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+/* 🌫️ NEBBIA CINEMATICA */
+
+.fog{
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at 30% 40%,
+      rgba(255,255,255,.06),
+      transparent 45%),
+
+    radial-gradient(circle at 70% 60%,
+      rgba(168,85,247,.08),
+      transparent 40%),
+
+    radial-gradient(circle at 50% 80%,
+      rgba(59,130,246,.06),
+      transparent 50%);
+
+  filter: blur(60px);
+
+  animation: fogMove 14s ease-in-out infinite alternate;
+
+  pointer-events:none;
+  z-index:1;
+}
+
+@keyframes fogMove{
+  from{
+    transform: scale(1) translateY(0px);
+    opacity:.7;
+  }
+
+  to{
+    transform: scale(1.2) translateY(-30px);
+    opacity:1;
+  }
+}
+.focus-next {
+  transform: scale(1.02);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  box-shadow: 0 40px 120px rgba(168,85,247,.25);
+  border-radius: 34px;
+}
+.visualizer span:nth-child(5){ animation-delay: .4s; }
+
+@keyframes bounce{
+  0%,100%{ transform:scaleY(.4); }
+  50%{ transform:scaleY(1.6); }
+}
+
+.memory-inside{
+  margin: 18px 0;
+  text-align: center;
+}
+.memory-inside .date-text{
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+#letter-overlay{
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,.75), rgba(0,0,0,.95));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.letter{
+  width: 220px;
+  height: 160px;
+  background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  animation: floatLetter 3s ease-in-out infinite;
+}
+
+.seal{
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.letter p{
+  font-size: 14px;
+  opacity: .8;
+  letter-spacing: 1px;
+}
+
+@keyframes floatLetter{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-10px); }
+}
+
+/* sparisce */
+#letter-overlay.hide{
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s ease;
+}
+</style>
+</head>
+<body>
+<div id="letter-overlay">
+  <div class="letter">
+    <div class="seal">💖</div>
+    <p>Il mio cuore in mano tua.</p>
+  </div>
+</div>
+
+
+  <div class="fog"></div>
+
+  <div id="intro">
+    <div class="intro-text"></div>
+  </div>
+<div class="box">
+
+<h1>💖</h1>
+
+<p>
+Se sei arrivata fin qui, troverai alcune canzoni.<br>
+Quando non trovato le parole giuste ho sempre preferito farlo attraverso la musica.<br>
+Ovviamente ci tengo a precisare che non sei obbligata ad ascoltare tutto subito, prenditi il tempo che ti serve<br>
+L.
+</p>
+
+
+<div class="track">
+  <img class="cover" src="leray.png">
+<div class="memory-inside">
+  <div class="date-text">18/04/2025</div>
+  <img src="18-04-2025.png" class="memory-img">
+</div>
+  <div class="name">Leray</div>
+  <audio controls><source src="leraye.mp3" type="audio/mpeg"></audio>
+  <div class="quote-box">"I wasn't necessarily looking for happiness, just less pain"</div>
+  <div class="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Good to not be you<br>
+It was love at first sight and misery after two months<br>
+Always feeling fucked up either by love or no love<br>
+"I thought you was married to the single life," she said<br>
+I wasn't necessarily looking for happiness, just less pain<br>
+I should've said somethin'<br>
+You said the only thing wrong with money is you ain't have enough of it<br>
+You said you deserve better, and now so do I<br>
+Anyways, the best part of us was me<br>
+When you got with me, you were a genius<br>
+Now without me, you have to live life as an idiot<br>
+I don't write songs, I write life, I told you that<br>
+And you were only fuckin' with my feelings because you didn't know your own<br>
+I do miss who I thought you were<br>
+And sometimes I'm miserable without you<br>
+So it's just like you're still here, shit<br><br>
+I need you to show me<br>
+Love me, love me closely<br>
+Love me like you own me and my heart<br>
+I need you to show me<br>
+Love me, love me closely<br>
+Love me like you own me and my heart, yeah</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="starstruck.png">
+  <div class="name">Starstruck (feat. Mark Hoppus)</div>
+<div class="memory-inside">
+  <div class="date-text">20/06/2025</div>
+  <img src="foto7.png" class="memory-img">
+</div>
+  <audio controls><source src="starstruck.mp3" type="audio/mpeg"></audio>
+<div class="quote-box">"You fell from the stars, and I'm starstruck"</div>
+<div class="visualizer">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Yeah, we're playing in bed
+You see the- I lock eyes, our eyes lock
+Our eyes locked, you can see the sadness
+My heart stops, every time you call my name
+My jaw drops, you fell from the stars, and I'm starstruck
+You fell from the stars, girl, am I lost?
+When you're down, when you're sad, is it my fault?
+I apologize for all of the lies, oh
+I won't treat you like the rest of them guys, oh
+
+I'm off the Percs, she don't condone it
+You say it makes me act atrocious
+But I can't stand life when I'm sober
+Take my heart, I'll hand it over
+Six months in, it gets colder
+I don't want us to be over
+Let's make love 'til we die
+And let's fuck until we slump over
+Be my first aid, I know you hate to see me bleed
+I don't deserve your love, I tend to fuck up everything
+It feels like I'm not enough, 'nough, 'nough, no
+This a conversation, not a love song
+
+Our eyes locked, you can see the sadness
+My heart stops, every time you call my name
+My jaw drops, you fell from the stars, and I'm starstruck
+You fell from the stars, girl, am I lost?
+When you're down, when you're sad, is it my fault?
+I apologize for all of the lies, oh
+I won't treat you like the rest of them guys, oh
+
+Everything that's wrong with me, is everything that's wrong with you
+You threw the blade, I caught the knife
+I'm right back in your room tonight
+Reflections in the broken glass
+No, I can't fix your broken past
+Count my blessings, close my eyes
+I'm right back in your room tonight (Oh)
+I can't escape your shadow (Oh)
+I can't forget what we don't know (Oh)
+Your love is a sentence to death row
+And you've got a seat in the front row (Oh)
+Hold me close, but you're cold as ice (Oh)
+Watch me choke on every line (Oh)
+And it feels like Hell tonight, it feels like Hell
+
+Our eyes locked, you can see the sadness
+My heart stops, every time you call my name
+My jaw drops, you fell from the stars, and I'm starstruck
+You fell from the stars, girl, am I lost?
+When you're down, when you're sad, is it my fault?
+I apologize for all of the lies, oh
+I won't treat you like the rest of them guys, oh
+
+We met in a Twilight Zone
+I fall apart but she keep me whole
+We met on the West Coast
+But I still see Miami in your soul
+
+Our eyes locked, you can see the sadness
+My heart stops, every time you call my name
+My jaw drops, you fell from the stars, and I'm starstruck
+You fell from the stars, girl, am I lost?
+When you're down, when you're sad, is it my fault?
+I apologize for all of the lies, oh
+I won't treat you like the rest of them guys, oh
+
+I'm here to serve a purpose
+Girl, I know I ain't picture-perfect
+One more thing I know for certain
+If you leave, I'll close the curtains</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="bonnie-clyde.png">
+  <div class="name">Bonnie & Clyde</div>
+<div class="memory-inside">
+  <div class="date-text">19/06/2025</div>
+  <img src="foto3.png" class="memory-img">
+</div>
+  <audio controls><source src="bonnie-clyde.mp3" type="audio/mpeg"></audio>
+<div class="quote-box">"So no matter where I go, I'll always need you by my side"</div>
+<div class="visualizer">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Honorable Court
+Missed the days I woke up, you were next to me
+Get a quick reply when you be textin' me
+And you always keep it real, don't gotta flex to me
+So no matter where I go, I'll always need you by my side
+Yeah, you're down to ride, Bonnie and Clyde
+If a nigga try to take you, straight homicide
+That's on my life, just be my wife
+Let me come and sweep you right up off your feet
+I'm so used to sadness, that shit follows me
+Happiness you bring, baby, be my queen
+Yeah, I know these demons comin' after me
+With you in my arms, I ain't worried 'bout a thing
+Can't get enough of your kisses, baby, I miss it
+When I'm around you, I fit in, usually feel like a misfit
+I know we just met, but baby, this is different
+You're so self-sufficient, choke you like submissive
+Baby, if I said it, then I fuckin' meant it
+I will never treat you bad like these other niggas
+I know these prescriptions got a nigga trippin'
+But on the real, I'm tryna overdose on you
+Missed the days I woke up, you were next to me
+Get a quick reply when you be textin' me
+And you always keep it real, don't gotta flex to me
+So no matter where I go, I'll always need you by my side
+Yeah, you're down to ride, Bonnie and Clyde
+If a nigga try to take you, straight homicide
+That's on my life, just be my wife
+Let me show you somethin' you ain't ever seen
+Got me cuffed up like a felony
+Hit it from the back, that shit heavenly
+Now we in the groove like the '70s
+Won't take no call, still pickin' up your phone calls
+Baby, I'm a beast
+Girl, you got me in a world that's drama-free
+All these other hoes, they be wanna-be's
+I don't wanna be with nobody except you, you, you
+Missed the days I woke up, you were next to me
+Get a quick reply when you be textin' me
+And you always keep it real, don't gotta flex to me
+So no matter where I go, I'll always need you by my side
+Yeah, you're down to ride, Bonnie and Clyde
+If a nigga try to take you, straight homicide
+That's on my life, just be my wife
+I'll give you the world to have you next to me</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="eye-contact.png">
+  <div class="name">Eye Contact (Mind Control)</div>
+<div class="memory-inside">
+  <div class="date-text">19/06/2025</div>
+  <img src="foto8.png" class="memory-img">
+</div>
+  <audio controls><source src="eye-contact.mp3" type="audio/mpeg"></audio>
+<div class="quote-box">"Thinkin' 'bout the day when you woke up in my arms"</div>
+<div class="visualizer">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Uh, girl, where did you go?
+I am so alone
+Thinkin' 'bout the day when you woke up in my arms
+Now that you're away, feel like I'm falling apart
+Cross hearts take my soul
+Coax me, hold me close
+Eye contact, mind control, oh-oh-oh-oh
+
+Hypnotized, I am
+I don't give a damn
+Antisocial, yeah
+Here we go again
+Listening to Blink-182 while I fuck her
+Like a Roman Trojan on a rubber
+Niggas think they funny, no Chris Tucker
+Tryna break bread, no last supper
+But back to the point, shorty got me on point
+Light me up like a joint, while we smokin' a joint
+And take the walk through the forest, you know the view super gorgeous
+Enough about us, back to the chorus
+
+Uh, girl, where did you go?
+I am so alone
+Thinkin' 'bout the day when you woke up in my arms
+Now that you're away, feel like I'm falling apart
+Cross hearts take my soul
+Coax me, hold me close
+Eye contact, mind control, oh-oh-oh-oh
+
+You are my overdose
+Too many drugs, overload
+I keep on letting go, go, go, go, go
+She— no one makes me feel like she—
+Take my breath away, can't breathe, breathe
+Why you leave me to cry?
+Why you leave me to die, die?
+
+Uh, girl, where did you go?
+I am so alone
+Thinkin' 'bout the day when you woke up in my arms
+Now that you're away, feel like I'm falling apart
+Cross hearts take my soul
+Coax me, hold me close
+Eye contact, mind control, oh-oh-oh-oh</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="confide.png">
+  <div class="name">Confide</div>
+<div class="memory-inside">
+  <div class="date-text">20/06/2025</div>
+  <img src="foto4.png" class="memory-img">
+</div>
+  <audio controls><source src="confide.mp3" type="audio/mpeg"></audio>
+  <div class="quote-box">"I need to confide, true love's hard to find"</div>
+  <div class="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <details>
+    <summary>lyrics</summary>
+    <p>
+Uh, I need to confide<br>
+I need to get right<br>
+It's a long ride<br>
+The drugs help me hide<br>
+The drugs help me hide, oh<br><br>
+I need to confide<br>
+True love’s hard to find<br>
+I'll wait for her to come find me<br>
+I'll even pay the fines<br>
+I need to confide<br>
+True love’s hard to find<br>
+I'll wait for her to come find me<br>
+Even pay the fines<br><br>
+Okay, it's been a long ride<br>
+Still the beginnin' of the ride<br>
+I'm gettin' high before the flight<br>
+LAX to the Chi'<br>
+Memories on my mind<br>
+Been reflecting on my life<br>
+Somethin' don’t feel right<br>
+Down deep inside, I’m scared of my own demise<br>
+I need to confide to the love of my life, life<br>
+It's getting dark outside<br>
+It’s getting darker inside<br>
+You're the only home in sight<br>
+I need a place to cry<br><br>
+I need to confide<br>
+True love's hard to find<br>
+I'll wait for her to come find me<br>
+I’ll even pay the fines<br>
+I need to confide<br>
+True love's hard to find<br>
+I'll wait for her to come find me<br>
+Even pay the fines<br><br>
+I'm willing to pay the price for you to stay the night<br>
+Bitch, you can't leave my side, the only home in sight<br>
+These pills make me roll like dice<br>
+Converse about drugs, I'm only tryna break the ice<br>
+Bleedin' out, feel like a lost cause<br>
+Oxycodone 'til I lockjaw<br>
+I need to clean my act up, where's the Lysol?<br>
+I been pourin' Actavis to sad songs<br>
+Who are you to tell me I'm wrong?<br>
+I'm headin' out of space, I blast off<br>
+They wonder why I'm gone for so long<br>
+Still don't know where I belong<br><br>
+I need to confide<br>
+True love's hard to find<br>
+I'll wait for her to come find me<br>
+I'll even pay the fines<br>
+I need to confide<br>
+True love's hard to find<br>
+I'll wait for her to come find me<br>
+Even pay the fines
+    </p>
+  </details>
+</div>
+
+<div class="track">
+  <img class="cover" src="abandoned.png">
+<div class="memory-inside">
+  <div class="date-text">18/06/2025</div>
+  <img src="18-06-2025.png" class="memory-img">
+</div>
+  <div class="name">Abandoned</div>
+  <audio controls><source src="abandoned.mp3" type="audio/mpeg"></audio>
+  <div class="quote-box">"I can't eat, I can't sleep, I can't think, I can't breathe"</div>
+  <div class="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Huh, I can't eat, I can't sleep, oh<br>
+I can't think, I can't breathe, oh<br>
+I can't see, I can't be with you, yeah<br>
+I don't know where to go from here<br>
+I know you told me not to come here<br>
+But I know you'll find some time<br>
+Some, yeah, for me<br>
+Tryna find my love, shawty<br>
+You ain't holding up, shawty<br>
+You ain't know enough, shawty, oh<br>
+Told you it was love, shawty<br>
+Put my love above, shawty<br>
+I know what it was shawty, shawty<br>
+Damn, shawty, right there, shawty, right there, shawty<br>
+Where you gon' go? Where you gon' go?<br>
+Where you gon' go girl? Yeah<br><br>
+Huh, I can't eat, I can't sleep, oh<br>
+I can't think, I can't breathe, oh<br>
+I can't see, I can't be with you, yeah<br>
+I don't know where to go from here<br>
+I know you told me not to come here<br>
+But I know you'll find some time<br>
+Some, yeah, for me<br><br>
+It's been a while now<br>
+Déjà vu like I'm comin' down a isle<br>
+Eyes on you, I hear you loud<br>
+And clear like I'm sorting through a crowd<br>
+And what you did, won't you say it ain't so<br>
+'Cause you lose yourself when you touch and roll<br>
+I guess that's why you never think to come home<br>
+But by the time you change your mind, I'll be gone<br>
+'Cause you should know by now, that I<br><br>
+Huh, I can't eat, I can't sleep, oh<br>
+I can't think, I can't breathe, oh<br>
+I can't see, I can't be with you, yeah<br>
+I don't know where to go from here<br>
+I know you told me not to come here<br>
+But I know you'll find some time<br>
+Some, yeah, for me<br>
+Tryna find my love, shawty<br>
+You ain't holding up, shawty<br>
+You ain't know enough, shawty, oh<br>
+Told you it was love, shawty<br>
+Put my love above, shawty<br>
+I know what it was shawty, shawty<br>
+Damn, shawty, right there, shawty, right there, shawty<br>
+Where you gon' go? Where you gon' go?<br>
+Where you gon' go girl?</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="emotional-overdose.png">
+  <div class="name">Emotional Overdose</div>
+<div class="memory-inside">
+  <div class="date-text">18/06/2025</div>
+  <img src="foto5.png" class="memory-img">
+</div>
+  <audio controls><source src="emotional-overdose.mp3" type="audio/mpeg"></audio>
+<div class="quote-box">"I tried to talk but you ain't givin' feedback"</div>
+<div class="visualizer">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+  <details>
+    <summary>lyrics</summary>
+    <p>We'll be here, lettin' go
+Someone needs to let me know
+I'm havin' problems lettin' go
+Overload
+I'm havin' problems lettin' go
+I need solutions, someone let me know
+I can't help it when I lose control
+This a emotional overdose
+I tried to talk but you ain't givin' feedback
+My depression really hungry and you feed that
+You say you love me, but I don't know if you mean that
+And I'm scared
+You've been helpin' me avoid a relapse
+All your love and affection, I need that
+You prolly tired of me, yeah, I understand
+I'ma make this song bleed, need a Kleenex
+Girl, you make me happy like a kid at recess
+But when you mad, you make me feel like a reject, no jerk
+You separate my angels from my demons
+Pinch myself 'cause it feels like I'm dreamin'
+But when you not here for me, the nightmares begin
+I'm havin' problems lettin' go
+I need solutions, someone let me know
+I can't help it when I lose control
+This a emotional overdose
+Huh, I cannot pretend that I don't care
+Hittin' below the belt, that shit hurt, and it's not fair
+Traumatized thoughts, girl, that shit gon' leave a mark, yeah
+Imagine takin a bullet to the heart, yeah
+Nowadays, I don't know where home is
+But you're the closest thing to a home I have
+But right about now I feel homeless
+Back to the heartbreak flashbacks
+I'm havin' problems lettin' go
+I need solutions, someone let me know
+I can't help it when I lose control
+This a emotional overdose</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="bleed.png">
+  <div class="name">Bleed</div>
+  <div class="memory-inside">
+    <div class="date-text">01/09/2025</div>
+    <img src="foto13.png" class="memory-img">
+  </div>
+  <audio controls><source src="bleed.mp3" type="audio/mpeg"></audio>
+  <div class="quote-box">"How did your heart mend so easy? Mine still bleeds"</div>
+  <div class="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <details>
+    <summary>lyrics</summary>
+    <p>How did your heart mend so easy?<br>
+Mine still bleeds<br>
+Hard to believe you don't need me<br>
+All those memories we made are burnin' in my brain<br>
+And I'm stuck in yesterday, for me, it's still the same<br>
+Tell me how<br>
+How did your heart mend so easy?<br>
+Mine still bleeds<br><br>
+The ghost of you still floats around my room<br>
+It lets me know that letting go's just not the same with you<br>
+Now every night I lay here in this bed we made for two<br>
+But I'm sleepin' alone while you're out there with somebody in theirs<br>
+Oh, I hope that he cares<br>
+In the way that I did, you abandoned me here<br>
+I'm lost up in my head again, I'm caught inside myself<br>
+You promised that it wouldn't end<br><br>
+But you let me, you let me down<br><br>
+How did your heart mend so easy?<br>
+Mine still bleeds<br>
+Hard to believe you don't need me<br>
+All those memories we made are burnin' in my brain<br>
+And I'm stuck in yesterday, for me, it's still the same<br>
+Tell me how<br>
+How did your heart mend so easy?<br>
+Mine still bleeds<br><br>
+Don't give up just because it's hard<br>
+Come back and heal me before I'm left scarred<br>
+You tell me, "We took this too far"<br>
+As soon as I let down my guard<br><br>
+When you needed it most, as you cried, I was soaked<br>
+Now it's weeks since we spoke, had your mom drop my clothes<br>
+And she tried to console me that love comes and goes<br>
+And there's nothing you owe me<br><br>
+But you let me, you let me down<br><br>
+How did your heart mend so easy?<br>
+Mine still bleeds<br>
+Hard to believe you don't need me<br>
+All those memories we made are burnin' in my brain<br>
+And I'm stuck in yesterday, for me, it's still the same<br>
+Tell me how<br>
+How did your heart mend so easy?<br>
+Mine still bleeds</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="whatever.png">
+  <div class="name">Whatever</div>
+<div class="memory-inside">
+  <div class="date-text">17/04/2025</div>
+  <img src="foto6.png" class="memory-img">
+</div>
+  <audio controls><source src="whatever.mp3" type="audio/mpeg"></audio>
+  <div class="quote-box">"I told her she can call me whenever, no matter the weather"</div>
+  <div class="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Oh-oh-oh, oh-oh, oh-oh, oh
+
+I told her she can call me whenever
+No matter the weather
+I'm falling apart, I need to get it together
+You lie, you lie when you say it’s forever
+You can't lie, I'm high, it ain’t getting no better
+I gave her all of my effort
+She say it's whatever
+I should've put effort in finding somebody better
+Now, I'm hung like a hook, sing this song forever
+No pun intended, with these words, I'm a little too clever, hey
+
+I'm in her bushes while she walk home
+I'm her secret admirer, stalk is such a strong term
+I'm in your bedroom when you not home
+Love is obsession, when the hell will I learn?
+You never meant to hurt me, right?
+I hope that that’s what you’re thinking
+You said you got a new man, right?
+I have to make him go missing
+I don't know what the fuck I was thinking
+Narcotic nonsense, I’m tweaking
+There's a hole in my heart, that shit leaking
+Just hold me close and heal the pain
+
+I told her she can call me whenever
+No matter the weather
+I'm falling apart, I need to get it together
+You lie, you lie when you say it's forever
+You can’t lie, I'm high, it ain't getting no better
+I gave her all of my effort
+She say it's whatever
+I should've put effort in finding somebody better
+Now I'm hung like a hook, sing this song forever
+No pun intended, with these words, I'm a little too clever, hey
+
+I'm hung, I'm hung, I'm young, I'm dumb
+In love, I'm sprung, can't hold my tongue
+Wanna shoutout to my fans, I know you worried
+In my Instagram comments, asking who hurt me
+I'm in my feelings over bitches that were doing me dirty
+I can still see your shadows in my room, baby
+You just text me the other day, a little too flirty
+I know you don't want me, you want my money, honey
+
+But you can't put a price on love
+Oh, you can't put a price on us
+
+I told her she can call me whenever
+No matter the weather
+I'm falling apart, I need to get it together
+You lie, you lie when you say it's forever
+You can't lie, I'm high, it ain't getting no better
+I gave her all of my effort
+She say it's whatever
+I should've put effort in finding somebody better
+Now I'm hung like a hook, sing this song forever
+No pun intended, with these words, I'm a little too clever, hey</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="we-dont-get-along.png">
+  <div class="name">We Don't Get Along</div>
+<div class="memory-inside">
+  <div class="date-text">01/09/2025</div>
+  <img src="foto10.png" class="memory-img">
+</div>
+  <audio controls><source src="we-dont-get-along.mp3" type="audio/mpeg"></audio>
+  <div class="quote-box">"Lookin' in the mirror with these words on my tongue, I've come to this conclusion, we don't get along"</div>
+  <div class="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <details>
+    <summary>lyrics</summary>
+    <p>
+Mm<br>
+We don't get along<br>
+We don't get along<br>
+We don't get along<br>
+We don't get along<br>
+We don't get along<br>
+We don't get along<br>
+We don't get along<br><br>
+Lookin' in the mirror with these words on my tongue<br>
+I've come to this conclusion, we don't get along<br>
+Savin' myself from myself is a job, but someone's got to do it<br>
+So let's just move along<br>
+I'm all fucked up, but it's all my fault<br>
+But I ain't wanna do it, but temptation is strong<br>
+Now I'm left in the cold, let my story be told<br>
+Let my story be told<br><br>
+Oh-oh, oh<br>
+Oh-oh, oh<br><br>
+Pain in my cardiac, matches the pain in my brain<br>
+Livin' in the shadows, you know where to find me at<br>
+The place where they don't dare speak good things<br>
+Make-out session, oh, am I late?<br>
+Had another make-out session with codeine<br>
+I kiss her, she kiss me to sleep<br>
+Havin' Hollywood dreams since 2016<br><br>
+We don't get along<br>
+Lookin' in the mirror with these words on my tongue<br>
+I've come to this conclusion, we don't get along<br>
+Savin' myself from myself is a job, but someone's got to do it<br>
+So let's just move along<br>
+I'm all fucked up, but it's all my fault<br>
+But I ain't wanna do it, but temptation is strong<br>
+Now I'm left in the cold, let my story be told
+    </p>
+  </details>
+</div>
+
+<div class="track">
+  <img class="cover" src="reminds-me-of-you.png">
+  <div class="name">Reminds Me of You</div>
+<div class="memory-inside">
+  <div class="date-text">18/04/2025</div>
+  <img src="foto9.png" class="memory-img">
+</div>
+  <audio controls><source src="reminds-me-of-you.mp3" type="audio/mpeg"></audio>
+<div class="quote-box">"Everything and everywhere reminds me of you"</div>
+<div class="visualizer">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+  <details>
+    <summary>lyrics</summary>
+    <p>I can't play that song 'cause it reminds me of you
+I can't watch that show 'cause it reminds me of you
+I can't even go there, it reminds me of you
+I don't wanna do that, it reminds me of you
+Cut off all of my friends 'cause they remind me of you
+I can't drink again 'cause I'm reminded of you
+I don't wanna do shit that reminds me of you
+Everything and everywhere reminds me of you
+
+I know we can't be together ever again
+You told me this forever, I ain't know forever could end
+You had me fucked up, had me thinkin' I would die here for you
+Shit got me fucked up, can't believe I was so blinded by you
+But I don't wanna cry
+Got my finger on the trigger and I'm thinking 'bout a homicide
+I feel like I could die
+Maybe if it was all over, I could have you in another life
+
+I can't play that song 'cause it reminds me of you
+I can't watch that show 'cause it reminds me of you
+I can't even go there, it reminds me of you
+I don't wanna do that, it reminds me of you
+Cut off all of my friends 'cause they remind me of you
+I can't drink again 'cause I'm reminded of you
+I don't wanna do shit that reminds me of you
+Everything and everywhere reminds me of you
+
+Gotta step out, get some fresh air
+Posted in the club, saw you pull up with your rebound
+Remind me again, uh, who kicked who out whose house?
+Remind me again, uh, who's fuckin' on who now? (Oh)
+Fightin' for my heart and, baby, I never lose
+No, I can't get high, 'cause it reminds me of you
+If you ever needed me, girl, I was flyin' to you
+Told you that I loved you, girl, I wasn't lyin' to you
+
+Fightin' for my heart and, baby, I never lose
+No, I can't get high, 'cause it reminds me of you
+If you ever needed me, girl, I was flyin' to you
+Told you that I loved you, girl, I wasn't lyin' to you
+
+I can't play that song 'cause it reminds me of you
+I can't watch that show 'cause it reminds me of you
+I can't even go there, it reminds me of you
+I don't wanna do that, it reminds me of you
+Cut off all of my friends 'cause they remind me of you
+I can't drink again 'cause I'm reminded of you
+I don't wanna do shit that reminds me of you
+Everything and everywhere reminds me of you</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="sleep-paralysis.png">
+  <div class="name">Sleep Paralysis</div>
+  <div class="memory-inside">
+    <div class="date-text">18/06/2025</div>
+    <img src="foto15.png" class="memory-img">
+  </div>
+  <audio controls><source src="sleep-paralysis.mp3" type="audio/mpeg"></audio>
+  <div class="quote-box">"I woke up to see your face, but I forgot that you're not there"</div>
+  <div class="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Sleep paralysis again<br>
+I am trapped inside my bed<br>
+Evil thoughts inside my head<br>
+Sleep paralysis again<br>
+I am trapped inside my bed<br>
+Evil thoughts inside my head<br><br>
+I feel your presence on my chest<br>
+Lately I ain't been the best<br>
+Maybe it's because you left<br>
+I wake up, you're layin' next to me<br>
+Man, oh, man, that's when I woke up again<br>
+It was a dream in a dream, reality ain't my friend, mmh<br>
+Man, oh, man, time to get fucked up again<br>
+I'm gettin' higher than high so reality won't set in, yeah<br><br>
+Sleep paralysis again<br>
+I am trapped inside my bed<br>
+Evil thoughts inside my head<br>
+Sleep paralysis again<br>
+I am trapped inside my bed<br>
+Evil thoughts inside my head<br><br>
+I woke up to see your face, but I forgot that you're not there<br>
+It's kinda crazy, ain't it complicated? Love, it got me scared<br>
+The nights are slumberless, I'm tossin', turnin', thinkin' about my life<br>
+And where I went wrong and took that left turn, it feels like I can never do right<br><br>
+Sleep paralysis again<br>
+I am trapped inside my bed<br>
+Evil thoughts inside my head<br>
+Sleep paralysis again<br>
+I am trapped inside my bed<br>
+Evil thoughts inside my head<br><br>
+Oceans, oceans, wavy oceans, oceans<br>
+This commotion, potion, floatin', floatin'<br>
+I never knew that, you were the one for me lil' baby<br>
+I never knew that, you were the one that would drive me crazy<br>
+I never knew that, you were the one for me lil' baby<br>
+I never knew that, you were the one to drive me crazy<br>
+Destiny is destiny, huh<br>
+I need you next to me, huh<br>
+Loving you's the recipe, uh<br>
+Loving you's the recipe, uh<br>
+Hunnid like a centipede, yeah<br>
+20 second century, yeah<br>
+I don't got time for the past, that's not into me, yeah<br>
+Don't come no closer, no composure, I know that, I am a goner<br>
+But it ain't over, until it's over, I know that, I am a goner, but it ain't over<br>
+I won't add onto your stress, I know that I'm not the best<br>
+Give it a break bae, give it a rest<br>
+I won't add onto your stress, I know that I'm not the best<br>
+Give it a break bae, give it a rest<br><br>
+Sleep paralysis again<br>
+I am trapped inside my bed<br>
+Evil thoughts inside my head<br>
+Sleep paralysis again<br>
+I am trapped inside my bed<br>
+Evil thoughts inside my head</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="let-go.png">
+  <div class="name">Let Go</div>
+<div class="memory-inside">
+  <div class="date-text">21/06/2025</div>
+  <img src="foto11.png" class="memory-img">
+</div>
+  <audio controls><source src="let-go.mp3" type="audio/mpeg"></audio>
+<div class="quote-box">"it takes two, to tango"</div>
+<div class="visualizer">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Gotta pack my bags and hit the road
+I don't wanna be here anymore
+I can’t hold on, I gotta let go
+But first there's a couple things you should know
+The day your heart became my home
+Mine wasn't cold, now I’m froze
+I don't wanna drop another tear
+Roll up face blunts to face the fear
+I wanna drown in your love, I'm scared of the deep end
+You met my mom and my friends, so I guess I'm too deep in
+And I won't give up, no, no, but it takes two, it takes two, to Tango
+What am I to do, it seems I fell in love with you
+Instincts telling me to move a little closer but I'm scared so
+Gotta pack my bags and hit the road
+I don't wanna be here anymore
+I can't hold on, I gotta let go
+But first there’s a couple things you should know
+The day your heart became my home
+Mine wasn’t cold, now I'm froze
+Gotta pack my bags and hit the road
+I don’t wanna be here anymore
+I can't hold on, I gotta let go
+But first there's a couple things you should know
+The day your heart became my home
+Mine wasn't cold, now I’m froze</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="maybe-im-wrong.png">
+  <div class="name">Maybe I'm Wrong</div>
+  <div class="memory-inside">
+    <div class="date-text">17/04/2025</div>
+    <img src="foto14.png" class="memory-img">
+  </div>
+  <audio controls><source src="maybee-im-wrong.mp3" type="audio/mpeg"></audio>
+  <div class="quote-box">"Maybe I'm wrong and maybe you're right"</div>
+  <div class="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Heart on my sleeve, sorry if I've been cold<br>
+I was more hurt than what I had led on<br>
+But I'm never scared to admit when I'm wrong<br>
+I took down the pictures I kept on my walls<br>
+I got so mad I wrote three different songs<br>
+But I scrapped them all 'cause it's not what I want<br><br>
+So can we stop?<br><br>
+Because I'm so tired<br>
+I put away my pride<br>
+That's 'cause I love you too much to fight<br>
+Or maybe I'm wrong<br>
+And maybe you're right<br>
+And I'll know we'll both be fine<br>
+It just might take some time<br>
+You know I love you too much to fight<br>
+Or maybe I'm wrong<br>
+And maybe you're right<br>
+Maybe, yeah<br><br>
+I'm well aware that it's over and done<br>
+Yeah, I can admit that I lost and you won<br>
+Whatever you need so that we can move on<br>
+When I think 'bout the good times, the anger dissolves<br>
+Can't have each other, but still got these songs<br>
+Part of my life, you'll never completely be gone<br><br>
+So can we stop?<br><br>
+Because I'm so tired<br>
+I put away my pride<br>
+That's 'cause I love you too much to fight<br>
+Or maybe I'm wrong<br>
+And maybe you're right<br>
+And I'll know we'll both be fine<br>
+It just might take some time<br>
+You know I love you too much to fight<br>
+Or maybe I'm wrong<br>
+And maybe you're right<br>
+Maybe, yeah<br><br>
+I'll know we'll both be fine<br>
+It just might take some time<br>
+You know I love you too much to fight<br>
+Maybe I'm wrong and maybe you're right</p>
+  </details>
+</div>
+<div class="track">
+  <img class="cover" src="best-friend.png">
+  <div class="name">Best Friend V1</div>
+<div class="memory-inside">
+  <div class="date-text">18/06/2025</div>
+  <img src="foto12.png" class="memory-img">
+</div>
+  <audio controls><source src="best-friend.mp3" type="audio/mpeg"></audio>
+<div class="quote-box">"You my lover, you my fighter, you my best friend"</div>
+<div class="visualizer">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+  <details>
+    <summary>lyrics</summary>
+    <p>Darling, I was wondering if I can
+Put a yellow diamond ring on your left hand, uh
+Married to that money, he's my best man
+You my lover, you my fighter, you my best friend, um
+And we in it 'til the world ends
+A understatement is me calling you my girlfriend
+I am married to this money, he's my best man
+You my lover, you my fighter, you my best friend, um
+
+Balling like a Laker
+I'm Kobe, and you on the sideline, watching
+And my ex still tryna cock block it
+But she can't do shit but sit back and watch it
+Do you get the logic?
+If I could be honest, I wanna wake you up
+And then I'll take you shopping, put you in the finest
+Baby, you're my highness
+And you're sure a pretty sight, like watching the horizon
+Yeah, I knew it all along
+Now my mind's filled with these love songs
+In your heart is where I belong
+In your heart is where I belong
+
+I was wondering if I can (I can)
+Put a yellow diamond ring on your left hand (Left hand)
+I am married to that money, he's my best man (Best man)
+I hope I'm doing better than your last man (Than your last man)
+It's an understatement, calling you my girlfriend (Girlfriend)
+And you my lover, you my fighter, you my best friend (Best friend)
+You my everything, it's us until the world ends, you a whirlwind (World ends, whirlwind)
+Glow all night 'til the early morning (Early morning)
+
+Baby, I'm a villain (Yee-haw)
+I'm gon' take you straight to my lair (Yee-haw)
+Uh, be my princess like Leia (Yee-haw, need her)
+Play a game of Halo, I'm a slayer (Yee-haw, hmm)
+Call me everything except a player
+You with me every day, don't gotta call me later
+We making love and you don't make no allegations
+Go and shake it like a Haitian (Can you feel my love?)
+
+Can you feel my love?
+Oh, oh
+Can you feel it? Can you feel it?
+Can you feel it? Can you feel my love? Oh-oh
+I need ya', ooh, ooh (Ooh, yeah)
+Uh, can you feel love? (Can you feel love?)
+This is more than lust (Can you feel love?)
+I can't get enough (Can you feel my love?)
+
+Darling, I was wondering if I can
+Put a yellow diamond ring on your left hand, uh
+Married to that money, he's my best man
+You my lover, you my fighter, you my best friend, um
+And we in it 'til the world ends
+A understatement is me calling you my girlfriend
+I am married to this money, he's my best man
+You my lover, you my fighter, you my best friend, um</p>
+  </details>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<script>
+const tracks = document.querySelectorAll(".track");
+
+let currentAudio = null;
+
+tracks.forEach(track => {
+  const audio = track.querySelector("audio");
+
+  audio.addEventListener("play", () => {
+    if (currentAudio && currentAudio !== audio) {
+      currentAudio.pause();
+      currentAudio.closest(".track").classList.remove("playing");
+    }
+
+    currentAudio = audio;
+    track.classList.add("playing");
+    track.querySelector(".cover").style.zIndex = "10";
+    track.classList.remove("paused");
+  });
+
+  audio.addEventListener("pause", () => {
+    track.classList.remove("playing");
+    track.classList.add("paused");
+  });
+
+  audio.addEventListener("ended", () => {
+    track.classList.remove("playing");
+    track.classList.remove("paused");
+
+    const allTracks = Array.from(document.querySelectorAll(".track"));
+    const currentIndex = allTracks.indexOf(track);
+    const nextTrack = allTracks[currentIndex + 1];
+
+    if (nextTrack) {
+      const nextAudio = nextTrack.querySelector("audio");
+
+      nextTrack.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      nextTrack.classList.add("focus-next");
+
+      setTimeout(() => {
+        nextAudio.play();
+        nextTrack.classList.remove("focus-next");
+      }, 250);
+    }
+
+    currentAudio = null;
+  });
+});
+</script>
+
+<script>
+const overlay = document.getElementById("letter-overlay");
+
+overlay.addEventListener("click", () => {
+  overlay.classList.add("hide");
+
+  setTimeout(() => {
+    overlay.style.display = "none";
+  }, 600);
+});
+</script>
+
+
+
+</body>
+</html>
