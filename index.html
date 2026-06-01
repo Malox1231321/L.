@@ -5,75 +5,9 @@
 <title>💖</title>
 
 <style>
-.header-memories {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  width: 100%;
-  max-width: 850px;
-  margin: 20px auto;
-  padding: 0 20px;
-  z-index: 10;
-}
-
-.memory-side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 40%;
-}
-
-.date-text {
-  font-family: 'MioFontPersonalizzato', sans-serif;
-  font-size: 18px;
-  color: #7c8cff;
-  margin-bottom: 10px;
-}
-
-.memory-img{
-  width: 260px;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 28px;
-  border: 1px solid rgba(167, 139, 250, 0.4);
-  box-shadow: 0 25px 60px rgba(0,0,0,.35);
-  display: block;
-  margin: 0 auto;
-}
-.memory-side:first-child .memory-img {
-  aspect-ratio: 1152 / 2048;
-}
-
-.memory-side:last-child .memory-img {
-  aspect-ratio: 900 / 600;
-}
-
-.box {
-  width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 0 24px;
-  position: relative;
-  z-index: 5;
-}
-
-@font-face {
-    font-family: 'MioFontPersonalizzato';
-    src: url('fonts/HelpMe.ttf') format('truetype');
-}
-
-.quote-box {
-    font-family: 'MioFontPersonalizzato', sans-serif;
-    font-size: 18px;
-    font-style: italic;
-    color: #b49cff;
-    margin: 20px 0;
-    padding: 10px;
-    text-align: center;
-    border-top: 1px solid rgba(180, 156, 255, 0.25);
-    border-bottom: 1px solid rgba(180, 156, 255, 0.25);
-}@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* =========================
+   RESET & BASE
+========================= */
 
 *{
   box-sizing:border-box;
@@ -93,12 +27,15 @@ body{
   display:flex;
   justify-content:center;
   padding:90px 24px;
-  position:relative;
   background:
     radial-gradient(circle at top,#111a2e 0%,#0b1020 60%,#05070f 100%);
+  position:relative;
 }
 
-/* AURORA BACKGROUND */
+/* =========================
+   FOG + BACKGROUND EFFECTS
+========================= */
+
 body::before{
   content:"";
   position:fixed;
@@ -107,7 +44,6 @@ body::before{
     radial-gradient(circle at 15% 20%,rgba(124,140,255,.14),transparent 25%),
     radial-gradient(circle at 80% 10%,rgba(93,214,214,.10),transparent 30%),
     radial-gradient(circle at 50% 80%,rgba(180,156,255,.10),transparent 35%);
-
   filter:blur(35px);
   animation:aurora 14s ease-in-out infinite alternate;
   pointer-events:none;
@@ -118,15 +54,28 @@ body::before{
   100%{transform:scale(1.25) rotate(8deg);}
 }
 
-/* STAR PARTICLES LAYER */
-#particles{
+.fog{
   position:fixed;
   inset:0;
-  z-index:0;
+  background:
+    radial-gradient(circle at 30% 40%,rgba(255,255,255,.06),transparent 45%),
+    radial-gradient(circle at 70% 60%,rgba(168,85,255,.08),transparent 40%),
+    radial-gradient(circle at 50% 80%,rgba(59,130,246,.06),transparent 50%);
+  filter:blur(60px);
+  animation:fogMove 14s ease-in-out infinite alternate;
   pointer-events:none;
+  z-index:1;
 }
 
-/* MAIN CONTAINER */
+@keyframes fogMove{
+  from{transform:scale(1) translateY(0);opacity:.7;}
+  to{transform:scale(1.2) translateY(-30px);opacity:1;}
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
 .box{
   width:100%;
   max-width:850px;
@@ -143,12 +92,15 @@ body::before{
   }
   to{
     opacity:1;
-    transform:translateY(0) scale(1);
+    transform:translateY(0);
     filter:blur(0);
   }
 }
 
-/* TITLE */
+/* =========================
+   TITLE & INTRO
+========================= */
+
 h1{
   text-align:center;
   font-size:88px;
@@ -170,22 +122,18 @@ h1{
   20%{transform:scale(1);}
 }
 
-/* INTRO TEXT */
 .box > p{
   text-align:center;
   font-size:15px;
   line-height:1.9;
   opacity:.78;
   margin-bottom:75px;
-  animation:fadeText 2s ease;
 }
 
-@keyframes fadeText{
-  from{opacity:0;letter-spacing:6px;}
-  to{opacity:.78;letter-spacing:0;}
-}
+/* =========================
+   TRACK CARD
+========================= */
 
-/* TRACK CARD */
 .track{
   position:relative;
   overflow:hidden;
@@ -197,348 +145,82 @@ h1{
   backdrop-filter:blur(18px);
   box-shadow:0 25px 80px rgba(0,0,0,.45);
   transition:transform .6s ease, box-shadow .6s ease;
-  transform-style:preserve-3d;
-}
 
-/* glowing border */
-.track::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:34px;
-  padding:1px;
-  background:linear-gradient(120deg,#7c8cff,#5dd6d6,#b49cff);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;
   opacity:0;
-  transition:opacity .5s ease;
+  transform:translateY(25px);
+  animation:cardEnter .8s ease forwards;
 }
 
-.track:hover{
-  transform:translateY(-10px) scale(1.01);
+.track:nth-of-type(1){animation-delay:.15s;}
+.track:nth-of-type(2){animation-delay:.25s;}
+.track:nth-of-type(3){animation-delay:.35s;}
+.track:nth-of-type(4){animation-delay:.45s;}
+.track:nth-of-type(5){animation-delay:.55s;}
+
+@keyframes cardEnter{
+  to{opacity:1;transform:translateY(0);}
 }
 
-.track:hover::before{
-  opacity:1;
-}
+/* =========================
+   COVER (VINILE BASE)
+========================= */
 
-/* COVER */
-.cover{
+.track .cover{
   width:260px;
   height:260px;
   object-fit:cover;
   display:block;
   margin:0 auto 22px;
   border-radius:28px;
-  box-shadow:0 25px 60px rgba(0,0,0,.55);
-  transition: transform .8s cubic-bezier(.2,.8,.2,1), border-radius .8s ease;
-  transform-origin:center;
   position:relative;
   z-index:2;
+
+  transition:transform .7s cubic-bezier(.2,.8,.2,1),
+             box-shadow .7s ease,
+             border-radius .7s ease;
+
+  animation:float 6s ease-in-out infinite;
 }
 
-/* VINILE (stato PLAY) */
-.track.playing .cover{
-  border-radius:50%;
-  transform:
-    translateX(90px)   /* ← ESCE LATERALMENTE */
-    translateY(-10px)
-    scale(1.08)
-    rotate(180deg);
-
-  animation: spin 2.6s linear infinite;
-
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.55),
-    0 0 40px rgba(168,85,247,.35),
-    0 0 90px rgba(236,72,153,.20);
-}
 @keyframes float{
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(-8px);}
 }
 
+/* hover */
 .cover:hover{
   transform:scale(1.06) rotate(-1deg);
 }
 
-/* NAME */
-.name{
-  text-align:center;
-  font-size:20px;
-  font-weight:600;
-  margin-bottom:22px;
-}
-
-/* AUDIO */
-audio{
-  width:100%;
-  margin-bottom:14px;
-  filter:drop-shadow(0 10px 20px rgba(0,0,0,.3));
-}
-
-/* LYRICS */
-details{
-  margin-top:20px;
-  border-radius:22px;
-  overflow:hidden;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.05);
-}
-
-summary{
-  cursor:pointer;
-  padding:18px 22px;
-  font-size:11px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  opacity:.72;
-}
-
-summary::-webkit-details-marker{display:none;}
-
-details p {
-    font-family: 'Inter', sans-serif;
-    padding: 0 22px 24px;
-    font-size: 14px;
-    line-height: 1.9;
-    white-space: pre-wrap;
-    opacity: .9;
-    animation: lyricsIn .6s ease;
-}
-
-@keyframes lyricsIn{
-  from{opacity:0;transform:translateY(10px);}
-  to{opacity:.9;transform:translateY(0);}
-}
-
-/* SCROLLBAR */
-::-webkit-scrollbar{width:10px;}
-::-webkit-scrollbar-track{background:#0a0f18;}
-::-webkit-scrollbar-thumb{
-  background:linear-gradient(#8b5cf6,#ec4899);
-  border-radius:20px;
-}
-
-/* MOBILE */
-@media(max-width:760px){
-  h1{font-size:60px;}
-  .track{padding:24px;}
-  .cover{width:100%;height:auto;max-width:320px;}
-}
-@keyframes spin{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
-}
-.track.playing{
-  background: linear-gradient(
-    145deg,
-    rgba(124,140,255,.14),
-    rgba(93,214,214,.08),
-    rgba(180,156,255,.06)
-  );
-}
-
-.cover{
-  animation: float 6s ease-in-out infinite;
-}
-
-/* VINILE ATTIVO */
-/* 🎧 DISCO ANIMATO CHE “ESCE” */
-.track .cover{
-  transition: transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .6s ease, filter .6s ease;
-  position: relative;
-  z-index: 2;
-}
-
-/* stato PLAY */
-.track.playing .cover{
-  border-radius: 50%;
-  transform: translateY(-18px) scale(1.12);
-  animation: spin 2.8s linear infinite;
-
-  box-shadow:
-    0 25px 60px rgba(0,0,0,.35),
-    0 0 35px rgba(168,85,247,.45),
-    0 0 90px rgba(236,72,153,.25);
-
-  filter: saturate(1.3) contrast(1.1);
-}
-
-/* piccolo “slot” sotto come se fosse il vinile */
-.track.playing::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:60%;
-  transform:translateX(-50%);
-  width:220px;
-  height:220px;
-  border-radius:50%;
-  background: radial-gradient(circle,
-    rgba(0,0,0,.55),
-    rgba(0,0,0,0) 70%);
-  filter: blur(10px);
-  opacity:1;
-  pointer-events:none;
-}
-
-/* idle */
-.track::after{
-  opacity:0;
-  transition: opacity .4s ease;
-}
-/* PAUSA = FERMO (ma resta VINILE) */
-.track.paused .cover{
-  animation-play-state: paused;
-}
-
-@keyframes fadeScene{
-  from{
-    opacity:0;
-    filter: blur(10px) brightness(0.6);
-    transform: scale(1.02);
-  }
-  to{
-    opacity:1;
-    filter: blur(0px) brightness(1);
-    transform: scale(1);
-  }
-}
-.track{
-  opacity: 0;
-  transform: translateY(25px);
-  animation: cardEnter 0.8s ease forwards;
-}
-
-.track:nth-of-type(1){ animation-delay: 0.15s; }
-.track:nth-of-type(2){ animation-delay: 0.25s; }
-.track:nth-of-type(3){ animation-delay: 0.35s; }
-.track:nth-of-type(4){ animation-delay: 0.45s; }
-.track:nth-of-type(5){ animation-delay: 0.55s; }
-.track:nth-of-type(6){ animation-delay: 0.65s; }
-.track:nth-of-type(7){ animation-delay: 0.75s; }
-.track.playing .cover{
-  border-radius: 50%;
-  animation: spin 3s linear infinite;
-}
-
-.track:not(.playing) .cover{
-  animation: float 6s ease-in-out infinite;
-}
-
-.track.playing .visualizer{
-  opacity: 1;
-}
-
-.track:not(.playing) .visualizer{
-  opacity: 0;
-}
-
-@keyframes cardEnter{
-  to{
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.track.playing{
-  background: linear-gradient(
-    145deg,
-    rgba(168,85,247,.18),
-    rgba(59,130,246,.10),
-    rgba(236,72,153,.08)
-  );
-  border-color: rgba(168,85,247,.4);
-  box-shadow:
-    0 35px 120px rgba(168,85,247,.28),
-    0 0 60px rgba(59,130,246,.12);
-}
-.visualizer{
-  display:flex;
-  justify-content:center;
-  gap:4px;
-  margin-top:14px;
-  height:18px;
-  opacity:0;
-  transition: opacity .3s ease;
-}
-
-.track.playing .visualizer{
-  opacity:1;
-}
-
-.visualizer span{
-  width:3px;
-  height:6px;
-  background: linear-gradient(#8b5cf6,#ec4899);
-  border-radius:10px;
-  animation: bounce 1s infinite ease-in-out;
-}
-
-.visualizer span:nth-child(2){ animation-delay: .1s; }
-.visualizer span:nth-child(3){ animation-delay: .2s; }
-.visualizer span:nth-child(4){ animation-delay: .3s; }
-.visualizer span:nth-child(5){ animation-delay: .4s; }
-
-@keyframes bounce{
-  0%,100%{ transform:scaleY(.4); }
-  50%{ transform:scaleY(1.6); }
-}
-/* VINILE CHE ESCE */
-.track .cover{
-  position: relative;
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-}
-
-/* disco “estratto” */
-.track.playing .cover{
-  transform: translateY(-18px) scale(1.05) rotate(180deg);
-  box-shadow: 0 40px 90px rgba(0,0,0,.5);
-}
-
-/* piccolo “vinile glow” */
-.track.playing::after{
-  content:"";
-  position:absolute;
-  width:260px;
-  height:260px;
-  left:50%;
-  top:70px;
-  transform:translateX(-50%);
-  border-radius:50%;
-  background: radial-gradient(circle, rgba(0,0,0,.6), rgba(0,0,0,0));
-  z-index:0;
-  opacity:0.6;
-}
 /* =========================
-   🎧 VINILE CINEMATICO
+   PLAYING STATE (VINILE)
 ========================= */
 
-.track .cover{
-  transition: transform .7s cubic-bezier(.2,.8,.2,1), 
-              box-shadow .7s ease,
-              border-radius .7s ease;
-  position: relative;
-  z-index: 2;
+.track.playing{
+  background:linear-gradient(145deg,rgba(168,85,255,.18),rgba(59,130,246,.10),rgba(236,72,153,.08));
+  border-color:rgba(168,85,255,.4);
+  box-shadow:0 35px 120px rgba(168,85,255,.28);
 }
 
-/* stato PLAY */
 .track.playing .cover{
-  border-radius: 50%;
-  transform: translateY(-25px) scale(1.12) rotate(360deg);
-  animation: spin 2.6s linear infinite;
+  border-radius:50%;
+  transform:translateY(-25px) scale(1.12) rotate(360deg);
+  animation:spin 2.6s linear infinite;
 
   box-shadow:
     0 40px 90px rgba(0,0,0,.45),
     0 0 40px rgba(168,85,247,.5),
     0 0 90px rgba(236,72,153,.25);
 
-  filter: saturate(1.3) contrast(1.15);
+  filter:saturate(1.3) contrast(1.15);
 }
 
-/* “vinile che esce dal case” */
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+/* glow vinile sotto */
 .track.playing::before{
   content:"";
   position:absolute;
@@ -548,228 +230,123 @@ details p {
   width:260px;
   height:260px;
   border-radius:50%;
-
-  background: radial-gradient(circle,
-    rgba(0,0,0,.6),
-    rgba(0,0,0,0) 70%);
-
-  filter: blur(12px);
-  opacity:0.8;
+  background:radial-gradient(circle,rgba(0,0,0,.6),transparent 70%);
+  filter:blur(12px);
   z-index:1;
   pointer-events:none;
 }
-/* ✨ RIFLESSO LUCE SUL VINILE */
 
-.track.playing .cover{
-  position: relative;
-  overflow: hidden;
+/* =========================
+   AUDIO & TEXT
+========================= */
+
+.name{
+  text-align:center;
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:22px;
 }
 
-/* striscia luce */
-.track.playing .cover::after{
-  content:"";
-  position:absolute;
-  top:-40%;
-  left:-60%;
-  width:60%;
-  height:180%;
-
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.15) 45%,
-    rgba(255,255,255,.35) 50%,
-    rgba(255,255,255,.15) 55%,
-    transparent 100%
-  );
-
-  transform: rotate(25deg);
-  animation: lightSweep 2.8s infinite;
-  pointer-events:none;
+audio{
+  width:100%;
+  margin-bottom:14px;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.3));
 }
 
-/* movimento luce */
-@keyframes lightSweep{
-  0%{
-    transform: translateX(-120%) rotate(25deg);
-    opacity: 0;
-  }
-  15%{
-    opacity: 1;
-  }
-  50%{
-    opacity: .9;
-  }
-  100%{
-    transform: translateX(320%) rotate(25deg);
-    opacity: 0;
-  }
-}
-/* 🌌 GLOW DINAMICO ROTANTE */
-
-.track.playing .cover{
-  position: relative;
+/* quote */
+.quote-box{
+  font-size:18px;
+  font-style:italic;
+  text-align:center;
+  color:#b49cff;
+  margin:20px 0;
+  padding:10px;
+  border-top:1px solid rgba(180,156,255,.25);
+  border-bottom:1px solid rgba(180,156,255,.25);
 }
 
-/* aura che ruota attorno */
-.track.playing .cover::before{
-  content:"";
-  position:absolute;
-  inset:-20px;
-  border-radius:50%;
+/* =========================
+   VISUALIZER
+========================= */
 
-  background: conic-gradient(
-    from 0deg,
-    rgba(168,85,247,.0),
-    rgba(168,85,247,.35),
-    rgba(236,72,153,.25),
-    rgba(59,130,246,.25),
-    rgba(168,85,247,.0)
-  );
-
-  animation: auraSpin 3s linear infinite;
-  filter: blur(10px);
-  z-index:-1;
+.visualizer{
+  display:flex;
+  justify-content:center;
+  gap:4px;
+  height:18px;
+  opacity:0;
+  transition:opacity .3s ease;
 }
 
-/* rotazione luce */
-@keyframes auraSpin{
-  from{ transform: rotate(0deg); }
-  to{ transform: rotate(360deg); }
-}
-/* 🌫️ NEBBIA CINEMATICA */
+.track.playing .visualizer{opacity:1;}
 
-.fog{
-  position:fixed;
-  inset:0;
-
-  background:
-    radial-gradient(circle at 30% 40%,
-      rgba(255,255,255,.06),
-      transparent 45%),
-
-    radial-gradient(circle at 70% 60%,
-      rgba(168,85,247,.08),
-      transparent 40%),
-
-    radial-gradient(circle at 50% 80%,
-      rgba(59,130,246,.06),
-      transparent 50%);
-
-  filter: blur(60px);
-
-  animation: fogMove 14s ease-in-out infinite alternate;
-
-  pointer-events:none;
-  z-index:1;
+.visualizer span{
+  width:3px;
+  height:6px;
+  background:linear-gradient(#8b5cf6,#ec4899);
+  border-radius:10px;
+  animation:bounce 1s infinite ease-in-out;
 }
 
-@keyframes fogMove{
-  from{
-    transform: scale(1) translateY(0px);
-    opacity:.7;
-  }
-
-  to{
-    transform: scale(1.2) translateY(-30px);
-    opacity:1;
-  }
-}
-.focus-next {
-  transform: scale(1.02);
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-  box-shadow: 0 40px 120px rgba(168,85,247,.25);
-  border-radius: 34px;
-}
-.visualizer span:nth-child(5){ animation-delay: .4s; }
+.visualizer span:nth-child(2){animation-delay:.1s;}
+.visualizer span:nth-child(3){animation-delay:.2s;}
+.visualizer span:nth-child(4){animation-delay:.3s;}
+.visualizer span:nth-child(5){animation-delay:.4s;}
 
 @keyframes bounce{
-  0%,100%{ transform:scaleY(.4); }
-  50%{ transform:scaleY(1.6); }
+  0%,100%{transform:scaleY(.4);}
+  50%{transform:scaleY(1.6);}
 }
 
-.memory-inside{
-  margin: 18px 0;
-  text-align: center;
-}
-.memory-inside .date-text{
-  font-size: 12px;
-  opacity: 0.7;
-  margin-bottom: 8px;
-}
+/* =========================
+   LETTER OVERLAY
+========================= */
 
 #letter-overlay{
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,0,0,.75), rgba(0,0,0,.95));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  cursor: pointer;
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,rgba(0,0,0,.75),rgba(0,0,0,.95));
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  cursor:pointer;
+}
+
+#letter-overlay.hide{
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .6s ease;
 }
 
 .letter{
-  width: 220px;
-  height: 160px;
-  background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 30px 80px rgba(0,0,0,.6);
-  animation: floatLetter 3s ease-in-out infinite;
-}
-
-.seal{
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.letter p{
-  font-size: 14px;
-  opacity: .8;
-  letter-spacing: 1px;
+  width:220px;
+  height:160px;
+  border-radius:18px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(12px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  animation:floatLetter 3s ease-in-out infinite;
 }
 
 @keyframes floatLetter{
-  0%,100%{ transform: translateY(0); }
-  50%{ transform: translateY(-10px); }
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
 }
 
-/* sparisce */
-#letter-overlay.hide{
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .6s ease;
-}
-.track.joy {
-  background: linear-gradient(145deg, rgba(255, 200, 80, .18), rgba(255, 120, 0, .08));
-  border-color: rgba(255, 180, 60, .35);
-}
+/* =========================
+   STATE COLORS
+========================= */
 
-.track.sad {
-  background: linear-gradient(145deg, rgba(80, 120, 255, .16), rgba(30, 40, 90, .12));
-  border-color: rgba(80, 120, 255, .35);
-}
-
-.track.love {
-  background: linear-gradient(145deg, rgba(255, 80, 160, .18), rgba(120, 30, 90, .10));
-  border-color: rgba(255, 80, 160, .35);
-}
-
-.track.dark {
-  background: linear-gradient(145deg, rgba(20, 20, 30, .6), rgba(0, 0, 0, .4));
-  border-color: rgba(255, 255, 255, .08);
-}
-
-.track.melancholy {
-  background: linear-gradient(145deg, rgba(120, 90, 255, .14), rgba(20, 20, 40, .2));
-  border-color: rgba(120, 90, 255, .25);
-}
+.track.joy{background:rgba(255,200,80,.12);}
+.track.sad{background:rgba(80,120,255,.12);}
+.track.love{background:rgba(255,80,160,.12);}
+.track.dark{background:rgba(20,20,30,.5);}
+.track.melancholy{background:rgba(120,90,255,.12);}
 </style>
 </head>
 <body>
