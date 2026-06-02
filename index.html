@@ -1790,6 +1790,15 @@ I am married to this money, he's my best man
 You my lover, you my fighter, you my best friend, um</p>
   </details>
 </div>
+<div class="track light" id="the-light">
+  <img class="cover" src="the-light.png">
+  <div class="name">The Light</div>
+  <audio controls>
+    <source src="the-light.mp3" type="audio/mpeg">
+  </audio>
+  <div class="generated-text"></div>
+</div>
+
 <div class="track">
   <img class="cover" src="luna.png">
   <div class="memory-inside">
@@ -1815,16 +1824,58 @@ You my lover, you my fighter, you my best friend, um</p>
 </div>
 
 </div>
-
 <script>
 const tracks = document.querySelectorAll(".track");
 
 let currentAudio = null;
+const lightTrack = document.querySelector("#the-light");
+const lightTextBox = lightTrack.querySelector(".generated-text");
+let lightStarted = false;
+
+const lightText = `Se sei arrivata a questo punto vuol dire che abbiamo quasi finito.
+
+Come ho detto all’inizio, spero davvero che questa “esperienza” ti abbia fatto provare almeno la metà di quello che ho provato io mentre "costruivo" tutto.
+
+È il risultato di tante notti insonni, dell’ansia e del pensiero sfocato di te che mi rimbalzava in testa senza fermarsi.
+
+E se devo essere sincero, non so nemmeno se tutte queste canzoni riusciranno a dirti davvero tutto quello che ho dentro.
+
+Allo stesso tempo però so che, se non avessi fatto tutto questo, sarebbe stato peggio.
+
+Nel nostro “durante” ci sono state cose che non sono mai riuscito a gestire mentre succedevano, e altre che ho capito solo dopo, quando era troppo tardi per farle cambiare.
+
+Non so se questo arriverà nel modo giusto, o se arriverà proprio, nonostante io me lo auguri.
+
+Però è tutto quello che non sono riuscito più a tenere dentro.
+
+Dopo quest'ultima canzone troverai un ultimo audio di 50 secondi, audio a cui credo tenessi, almeno un po', dato che mi chiedesti di inviartelo su WhatsApp. Detto questo, non mi è rimasta che la speranza e l'attesa.
+
+L.`;
+
+let i = 0;
+let typingStarted = false;
+
+function typeLightText() {
+  if (i < lightText.length) {
+
+    const char = lightText.charAt(i);
+
+    if (char === "\n") {
+      lightTextBox.innerHTML += "<br>";
+    } else {
+      lightTextBox.innerHTML += char;
+    }
+
+    i++;
+    setTimeout(typeLightText, 35);
+  }
+}
 
 tracks.forEach(track => {
   const audio = track.querySelector("audio");
 
   audio.addEventListener("play", () => {
+
     if (currentAudio && currentAudio !== audio) {
       currentAudio.pause();
       currentAudio.closest(".track").classList.remove("playing");
@@ -1834,6 +1885,21 @@ tracks.forEach(track => {
     track.classList.add("playing");
     track.querySelector(".cover").style.zIndex = "10";
     track.classList.remove("paused");
+
+    // LIGHT SPECIAL
+    if (track.id === "the-light" && !lightStarted) {
+      lightStarted = true;
+
+      setTimeout(() => {
+        lightTextBox.classList.add("show");
+
+        if (!typingStarted) {
+          typingStarted = true;
+          typeLightText();
+        }
+
+      }, 1200);
+    }
   });
 
   audio.addEventListener("pause", () => {
@@ -1881,8 +1947,6 @@ overlay.addEventListener("click", () => {
   }, 600);
 });
 </script>
-
-
 
 </body>
 </html>
